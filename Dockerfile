@@ -2,7 +2,7 @@ FROM resin/raspberrypi3-alpine:3.6
 
 MAINTAINER ilanyu <lanyu19950316@gmail.com>
 
-RUN apk add --update --no-cache curl musl-dev iptables libev openssl gnutls-dev readline-dev libnl3-dev lz4-dev libseccomp-dev gnutls-utils gpgme libseccomp-dev linux-headers linux-pam-dev libev-dev readline-dev
+RUN apk add --update --no-cache curl musl-dev iptables libev openssl gnutls-dev readline-dev libnl3-dev lz4-dev libseccomp-dev gnutls-utils gpgme libseccomp-dev linux-headers linux-pam-dev libev-dev readline-dev tzdata
 
 RUN buildDeps="xz tar openssl gcc autoconf make g++ git"; \
 	set -x \
@@ -50,6 +50,11 @@ COPY frpc /usr/bin/frpc
 COPY frpc_full.ini /etc/frp/frpc_full.ini
 COPY ocserv-script-udp-broadcast-relay.sh /usr/bin/ocserv-script-udp-broadcast-relay.sh
 COPY docker-entrypoint.sh /entrypoint.sh
+
+RUN chmod a+x /usr/bin/frpc && \
+    chmod a+x /usr/bin/ocserv-script-udp-broadcast-relay.sh && \
+    chmod a+x /entrypoint.sh
+
 ENTRYPOINT ["/entrypoint.sh"]
 
 EXPOSE 4443

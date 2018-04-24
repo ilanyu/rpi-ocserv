@@ -27,7 +27,7 @@ Get the docker image:
 
 Start an ocserv instance:
 
-	docker run --restart=always --name ocserv --privileged -p 4443:4443 -p 4443:4443/udp -e "BCPort=3801" -e "server_addr=192.168.123.11" -e "privilege_token=12345678" -d ilanyu/rpi-ocserv
+	docker run --restart=always --name ocserv --privileged -p 4443:4443 -p 4443:4443/udp -e "BCPort=3801" -e "server_addr=192.168.123.11" -e "privilege_token=12345678" -e "login_fail_exit=false" -e "TZ=Asia/Chongqing" -d ilanyu/rpi-ocserv
 
 Add user:
 
